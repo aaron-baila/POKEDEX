@@ -1,4 +1,4 @@
-package com.example.appapi;
+package com.example.Pokedex;
 
 
 import android.content.Context;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.appapi.models.Pokemon;
+import com.example.Pokedex.models.Pokemon;
 
 import java.util.ArrayList;
 

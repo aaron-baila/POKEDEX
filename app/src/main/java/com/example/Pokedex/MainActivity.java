@@ -1,4 +1,4 @@
-package com.example.appapi;
+package com.example.Pokedex;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appapi.models.Pokemon;
-import com.example.appapi.models.PokemonRespuesta;
-import com.example.appapi.pokeApi.PokeApiService;
+import com.example.Pokedex.models.Pokemon;
+import com.example.Pokedex.models.PokemonRespuesta;
+import com.example.Pokedex.pokeApi.PokeApiService;
 
 import java.util.ArrayList;
 

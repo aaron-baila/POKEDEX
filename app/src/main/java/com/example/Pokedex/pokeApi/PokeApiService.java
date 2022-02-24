@@ -1,6 +1,6 @@
-package com.example.appapi.pokeApi;
+package com.example.Pokedex.pokeApi;
 
-import com.example.appapi.models.PokemonRespuesta;
+import com.example.Pokedex.models.PokemonRespuesta;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

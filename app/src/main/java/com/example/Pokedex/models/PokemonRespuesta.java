@@ -1,4 +1,4 @@
-package com.example.appapi.models;
+package com.example.Pokedex.models;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.appapi;
+package com.example.Pokedex;
 
 import org.junit.Test;
 
