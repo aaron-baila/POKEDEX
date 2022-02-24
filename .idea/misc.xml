@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/WorkAndroid/AppApi3/app/src/main/res/layout/activity_main.xml" value="0.11354166666666667" />
+        <entry key="..\:/WorkAndroid/AppApi3/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/WorkAndroid/AppApi3/app/src/main/res/layout/item_pokemon.xml" value="0.264" />
+        <entry key="..\:/WorkAndroid/AppApi3/app/src/main/res/layout/styles.xml" value="0.1" />
       </map>
     </option>
   </component>

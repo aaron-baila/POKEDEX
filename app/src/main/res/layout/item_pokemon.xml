@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/pokedexrosa">
 
     <ImageView
         android:id="@+id/fotoImagenView"
@@ -18,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
+        android:textColor="@color/black"
         android:gravity="center_horizontal"
         android:textAllCaps="true"
 
