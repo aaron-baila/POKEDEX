@@ -4,6 +4,7 @@ public class Pokemon {
     private String name;
     private String url;
     private int number;
+    static boolean click;
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class Pokemon {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public boolean isClick() {
+        return click;
+    }
+
+    public void setClick(boolean click) {
+        this.click = click;
     }
 }

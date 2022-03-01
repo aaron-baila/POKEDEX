@@ -3,7 +3,7 @@ package com.example.Pokedex;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListaPokemonAdapter listaPokemonAdapter;
 
+    private Button botonShiny;
 
     private ArrayList<Pokemon> listaPokemon = new ArrayList<Pokemon>();
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -52,28 +54,51 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         obtenerDatos();
-        listaPokemonAdapter.setOnClickListener(new View.OnClickListener() {
+        botonShiny = findViewById(R.id.btnShiny);
+        botonShiny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),
-                        "Seleccion: " + listaPokemon.get(recyclerView.getChildAdapterPosition(view)).getName(),Toast.LENGTH_SHORT).show();
+                Pokemon p = new Pokemon();
+                p.setClick(!p.isClick());
+                obtenerDatos();
             }
         });
+
+        listaPokemonAdapter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+            int idPokemon = listaPokemon.get(recyclerView.getChildAdapterPosition(view)).getNumber();
+            boolean booleanPokemon = listaPokemon.get(recyclerView.getChildAdapterPosition(view)).isClick();
+
+               // listaPokemon.get(recyclerView.getChildAdapterPosition(view)).setClick(!booleanPokemon);
+                //listaPokemon.get(recyclerView.getChildAdapterPosition(view)).setClick(!listaPokemon.get(recyclerView.getChildAdapterPosition(view)).isClick());
+
+                 //  obtenerDatos();
+
+            }
+        });
+
     }
 
+
+
     public void obtenerDatos() {
+
         //  Log.e(" Punto ","obtener datos entrada");
         PokeApiService service = retrofit.create(PokeApiService.class);
-        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon(151, 0);
+
+        Call<PokemonRespuesta> pokemonRespuestaCall =
+                service.obtenerListaPokemon(898, 0);
+
 
         pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
             @Override
             public void onResponse(Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
                 if (response.isSuccessful()) {
                     PokemonRespuesta pokemonRespuesta = response.body();
-                    //  assert pokemonRespuesta != null;
+
                     ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
-                    // String a = listaPokemon.size() + "";
+
 
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
 
@@ -89,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, " ERROR");
             }
         });
+
+
     }
 
     public ArrayList<Pokemon> getListaPokemon() {

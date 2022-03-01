@@ -24,7 +24,8 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     private View.OnClickListener listener;
     private ArrayList<Pokemon> dataset;
     private Context context;
-    public ListaPokemonAdapter(Context context){
+
+    public ListaPokemonAdapter(Context context) {
         this.context = context;
         dataset = new ArrayList<>();
     }
@@ -34,13 +35,34 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false);
 
         view.setOnClickListener(this);
-        return  new ViewHolder(view);
+        return new ViewHolder(view);
     }
 
-    public void setOnClickListener(View.OnClickListener listener){
+    public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
+
+    // vamos a hacer que cuando clickes es un pokemon se vuelva shynni
     @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Pokemon p = dataset.get(position);
+        holder.nombreTextView.setText(p.getName());
+        boolean shiny = p.isClick();
+
+        String loadPokemon = "";
+        if (p.isClick()) {
+            loadPokemon = "https://www.cpokemon.com/pokes/home/shiny/";
+        } else {
+            loadPokemon = "https://www.cpokemon.com/pokes/home/";
+        }
+        Glide.with(context)
+                .load(loadPokemon + p.getNumber() + ".png")
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.fotoImageView);
+    }
+
+   /* @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon p = dataset.get(position);
         holder.nombreTextView.setText(p.getName());
@@ -51,7 +73,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.fotoImageView);
-    }
+    }*/
 
     @Override
     public int getItemCount() {
@@ -59,15 +81,15 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     }
 
     public void adicionarListaPokemon(ArrayList<Pokemon> listaPokemon) {
-    dataset.addAll(listaPokemon);
-    notifyDataSetChanged();
+        dataset.addAll(listaPokemon);
+        notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View view) {
-    if(listener!=null){
-        listener.onClick(view);
-    }
+        if (listener != null) {
+            listener.onClick(view);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
