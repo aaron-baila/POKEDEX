@@ -2,6 +2,8 @@ package com.example.Pokedex;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,21 +26,21 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Pokedex";
     private Retrofit retrofit;
     private RecyclerView recyclerView;
-    private  ListaPokemonAdapter listaPokemonAdapter;
+    private ListaPokemonAdapter listaPokemonAdapter;
+
+
+    private ArrayList<Pokemon> listaPokemon = new ArrayList<Pokemon>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // retrofit = new Retrofit.Builder()
-        //          .baseUrl("https://pokeapi.co/api/v2/")
-        //         .addConverterFactory(GsonConverterFactory.create())
-        //         .build();
-
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         listaPokemonAdapter = new ListaPokemonAdapter(this);
+
+
         recyclerView.setAdapter(listaPokemonAdapter);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -50,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         obtenerDatos();
+        listaPokemonAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),
+                        "Seleccion: " + listaPokemon.get(recyclerView.getChildAdapterPosition(view)).getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void obtenerDatos() {
@@ -59,16 +68,17 @@ public class MainActivity extends AppCompatActivity {
 
         pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
             @Override
-            public void onResponse( Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
+            public void onResponse(Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
                 if (response.isSuccessful()) {
                     PokemonRespuesta pokemonRespuesta = response.body();
-                  //  assert pokemonRespuesta != null;
+                    //  assert pokemonRespuesta != null;
                     ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
-                   // String a = listaPokemon.size() + "";
+                    // String a = listaPokemon.size() + "";
 
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
 
 
+                    setListaPokemon(listaPokemon);
                 } else {
                     Log.e(TAG, " ERROR");
                 }
@@ -79,5 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, " ERROR");
             }
         });
+    }
+
+    public ArrayList<Pokemon> getListaPokemon() {
+        return listaPokemon;
+    }
+
+    public void setListaPokemon(ArrayList<Pokemon> listaPokemon) {
+        this.listaPokemon = listaPokemon;
     }
 }

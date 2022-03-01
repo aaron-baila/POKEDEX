@@ -18,8 +18,10 @@ import com.example.Pokedex.models.Pokemon;
 import java.util.ArrayList;
 
 
-public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder> {
+public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder> implements View.OnClickListener {
 
+
+    private View.OnClickListener listener;
     private ArrayList<Pokemon> dataset;
     private Context context;
     public ListaPokemonAdapter(Context context){
@@ -30,9 +32,14 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false);
+
+        view.setOnClickListener(this);
         return  new ViewHolder(view);
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon p = dataset.get(position);
@@ -44,12 +51,6 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.fotoImageView);
-       /*Glide.with(context)
-               .load("https://www.cpokemon.com/pokes/home/"+ p.getNumber() + ".png")
-               .centerCrop()
-               .crossFade()
-               .diskCacheStrategy(DiskCacheStrategy.ALL)
-               .into(holder.fotoImageView);*/
     }
 
     @Override
@@ -60,6 +61,13 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     public void adicionarListaPokemon(ArrayList<Pokemon> listaPokemon) {
     dataset.addAll(listaPokemon);
     notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View view) {
+    if(listener!=null){
+        listener.onClick(view);
+    }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
