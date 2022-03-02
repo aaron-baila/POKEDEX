@@ -32,6 +32,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         view.setOnClickListener(this);
         return new ViewHolder(view);
@@ -42,6 +43,11 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     }
 
     // vamos a hacer que cuando clickes es un pokemon se vuelva shynni
+=======
+        return  new ViewHolder(view);
+    }
+
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
 =======
         return  new ViewHolder(view);
     }
@@ -78,8 +84,11 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.fotoImageView);
 <<<<<<< HEAD
+<<<<<<< HEAD
     }*/
 =======
+=======
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
        /*Glide.with(context)
                .load("https://www.cpokemon.com/pokes/home/"+ p.getNumber() + ".png")
                .centerCrop()
@@ -100,6 +109,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Override
     public void onClick(View view) {
         if (listener != null) {
@@ -107,6 +117,8 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         }
     }
 
+=======
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
 =======
 >>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
     public class ViewHolder extends RecyclerView.ViewHolder {
