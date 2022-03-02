@@ -2,8 +2,11 @@ package com.example.Pokedex;
 
 import android.os.Bundle;
 import android.util.Log;
+<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
+=======
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,23 +29,30 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Pokedex";
     private Retrofit retrofit;
     private RecyclerView recyclerView;
+<<<<<<< HEAD
     private ListaPokemonAdapter listaPokemonAdapter;
 
     private Button botonShiny;
 
     private ArrayList<Pokemon> listaPokemon = new ArrayList<Pokemon>();
+=======
+    private  ListaPokemonAdapter listaPokemonAdapter;
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // retrofit = new Retrofit.Builder()
+        //          .baseUrl("https://pokeapi.co/api/v2/")
+        //         .addConverterFactory(GsonConverterFactory.create())
+        //         .build();
+
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         listaPokemonAdapter = new ListaPokemonAdapter(this);
-
-
         recyclerView.setAdapter(listaPokemonAdapter);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -54,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         obtenerDatos();
+<<<<<<< HEAD
         botonShiny = findViewById(R.id.btnShiny);
         botonShiny.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+=======
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
     }
 
 
@@ -93,17 +106,22 @@ public class MainActivity extends AppCompatActivity {
 
         pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
             @Override
-            public void onResponse(Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
+            public void onResponse( Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
                 if (response.isSuccessful()) {
                     PokemonRespuesta pokemonRespuesta = response.body();
+<<<<<<< HEAD
 
                     ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
 
+=======
+                  //  assert pokemonRespuesta != null;
+                    ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
+                   // String a = listaPokemon.size() + "";
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
 
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
 
 
-                    setListaPokemon(listaPokemon);
                 } else {
                     Log.e(TAG, " ERROR");
                 }
@@ -116,13 +134,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    public ArrayList<Pokemon> getListaPokemon() {
-        return listaPokemon;
-    }
-
-    public void setListaPokemon(ArrayList<Pokemon> listaPokemon) {
-        this.listaPokemon = listaPokemon;
     }
 }

@@ -18,10 +18,8 @@ import com.example.Pokedex.models.Pokemon;
 import java.util.ArrayList;
 
 
-public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder> implements View.OnClickListener {
+public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder> {
 
-
-    private View.OnClickListener listener;
     private ArrayList<Pokemon> dataset;
     private Context context;
 
@@ -33,6 +31,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false);
+<<<<<<< HEAD
 
         view.setOnClickListener(this);
         return new ViewHolder(view);
@@ -43,6 +42,11 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     }
 
     // vamos a hacer que cuando clickes es un pokemon se vuelva shynni
+=======
+        return  new ViewHolder(view);
+    }
+
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pokemon p = dataset.get(position);
@@ -73,7 +77,17 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.fotoImageView);
+<<<<<<< HEAD
     }*/
+=======
+       /*Glide.with(context)
+               .load("https://www.cpokemon.com/pokes/home/"+ p.getNumber() + ".png")
+               .centerCrop()
+               .crossFade()
+               .diskCacheStrategy(DiskCacheStrategy.ALL)
+               .into(holder.fotoImageView);*/
+    }
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
 
     @Override
     public int getItemCount() {
@@ -85,6 +99,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         notifyDataSetChanged();
     }
 
+<<<<<<< HEAD
     @Override
     public void onClick(View view) {
         if (listener != null) {
@@ -92,6 +107,8 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         }
     }
 
+=======
+>>>>>>> parent of ea3b539 (clickable las fotos y sale el nombre)
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView fotoImageView;
